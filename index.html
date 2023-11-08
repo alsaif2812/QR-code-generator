@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QR Code Generator</title>
+	<style>
+		body {
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+		}
+		.container {
+			margin: 0 auto;
+			max-width: 600px;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+			text-align: center;
+		}
+		h1 {
+			margin-top: 0;
+		}
+		input[type="text"] {
+			width: 80%;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			margin-bottom: 20px;
+			font-size: 16px;
+		}
+		button {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			margin-right: 10px;
+		}
+		button:hover {
+			background-color: #3e8e41;
+		}
+		img {
+			max-width: 100%;
+			height: auto;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>QR Code Generator</h1>
+		<input type="text" id="url" placeholder="Enter URL">
+		<button onclick="generateQR()">Generate QR Code</button>
+		<button onclick="clearQR()">Clear QR Code</button>
+		<br><br>
+		<img id="qr-code" src="" alt="">
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+	<script>
+		function generateQR() {
+			var url = document.getElementById("url").value;
+			if (url !== "") {
+				var qr = new QRious({
+					element: document.getElementById("qr-code"),
+					value: url,
+					size: 500
+				});
+			}
+		}
+		function clearQR() {
+			document.getElementById("url").value = "";
+			document.getElementById("qr-code").src = "";
+		}
+	</script>
+</body>
+</html>
